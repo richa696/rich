@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@edx/frontend-component-header": "file:../path/to/local/module"
+  }
+}

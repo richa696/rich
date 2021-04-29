@@ -1,0 +1,57 @@
+<%page expression_filter="h"/>
+<%namespace name='static' file='static_content.html'/>
+<%! from django.utils.translation import ugettext as _ %>
+
+<section class="courses-container">
+  <section class="highlighted-courses">
+
+    % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+      <section class="courses">
+      <center> <h1 style="font-weight: bold;">Explore top courses</h1></center> 
+        <ul class="courses-listing">
+          ## limiting the course number by using HOMEPAGE_COURSE_MAX as the maximum number of courses
+          %for course in courses[:homepage_course_max]:
+          <li class="courses-listing-item">
+              <%include file="course.html" args="course=course" />
+          </li>
+        %endfor
+        </ul>
+      </section>
+    ## in case there are courses that are not shown on the homepage, a 'View all Courses' link should appear
+      % if homepage_course_max and len(courses) > homepage_course_max:
+      <div class="courses-more">
+        <a class="courses-more-cta" href="${marketing_link('COURSES')}"> ${_("View all Courses")} </a>
+      </div>
+    % endif
+    % endif
+
+  </section>
+</section>
+
+
+<section class="curriculum-container" style="background-color: #f6f6f6;">
+  <h1 style="font-weight: bold;">Explore Curriculum</h1>
+  <section class="highlighted-curriculum">
+    <div class="row">
+      <div class="col-sm-3 col-lg-2">
+    <div class="card animated-card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);width:100%;margin-bottom: 3%;margin-top: 3%;height: 280px;">
+    <div class="header">
+     <center> <img src="../../static/images/java1.png" alt="curriculum-img" style="height: 150px;width: auto;"></center>
+    </div>
+    <center><h2 style="font-weight: bold;color: #0b1d2b">Java Curriculum</h2> 
+   <a class="btn" href="http://localhost:18000/curriculum" style="background-color: #22b1ed;color: #fff;">View Details</a></center>
+    </div>
+  </div>
+
+  <div class="col-sm-3 col-lg-2 ">
+    <div class="card animated-card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);width:100%;margin-bottom: 3%;margin-top: 3%;height: 280px;">
+    <div class="header">
+     <center> <img src="../../static/images/python.png" alt="curriculum-img" style="height: 100px;width: auto;margin-top: 35px;margin-bottom: 20px;"></center>
+    </div>
+    <center><h2 style="font-weight: bold;color: #0b1d2b;">Python Curriculum</h2> 
+   <a class="btn" href="#" style="background-color: #22b1ed;color: #fff;">View Details</a></center>
+    </div> 
+  </div>
+  </div>
+  </section>
+</section>

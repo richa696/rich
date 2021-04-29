@@ -1,0 +1,12 @@
+# This file contains configuration common too all microfrontends
+
+version: "2.1"
+
+services:
+  microfrontend:
+    command: bash -c 'npm install; while true; do npm start; sleep 2; done'
+    stdin_open: true
+    tty: true
+    image: node:12
+    environment:
+      - NODE_ENV=development
